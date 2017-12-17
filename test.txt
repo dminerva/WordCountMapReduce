@@ -1,5 +1,1 @@
-TEST one
-TEST two
-TEST three
-TEST four
-TEST five
+This is a test. I will test that all punctuation is removed, that includes periods, commas and the like. Testing now.
