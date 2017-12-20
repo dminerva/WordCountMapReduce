@@ -47,7 +47,7 @@ public class Application {
 		
 		Collections.sort(shuffle, Comparator.comparing(KeyValuePair::getKey));
 		
-		System.out.println("\n========== Shuffle ==========\n");
+		System.out.println("\n========== Sort & Shuffle ==========\n");
 		System.out.println(shuffle.toString());
 		
 		
