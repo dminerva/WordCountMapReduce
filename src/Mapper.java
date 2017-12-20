@@ -4,16 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Mapper {
 	private ArrayList<KeyValuePair> mappedFile;
-	private ArrayList<KeyValuePair> combinedFile;
+	private HashMap<String, Integer> combinedFile;
 	File fileToRead;
 	private String line;
 	
 	public Mapper(File fileToRead) {
 		mappedFile = new ArrayList<KeyValuePair>();
-		combinedFile = new ArrayList<KeyValuePair>();
+		combinedFile = new HashMap<String, Integer>();
 		this.fileToRead = fileToRead;
 	}
 	
@@ -51,10 +52,18 @@ public class Mapper {
 	}
 	
 	public void combine() {		
-		
+		for(int i = 0; i < mappedFile.size(); i++) {
+			if(!combinedFile.containsKey(mappedFile.get(i).getKey())) {
+				combinedFile.put(mappedFile.get(i).getKey(), mappedFile.get(i).getValue());
+			} else {
+				int oldValue = mappedFile.get(i).getValue();
+				
+				combinedFile.put(mappedFile.get(i).getKey(), oldValue + 1);
+			}
+		}
 	}
 	
-	public ArrayList<KeyValuePair> getCombined() {
+	public HashMap<String, Integer> getCombined() {
 		return combinedFile;
 	}
 }
