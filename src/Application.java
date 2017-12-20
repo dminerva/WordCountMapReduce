@@ -10,10 +10,10 @@ public class Application {
 		Mapper m = new Mapper(new File("elephant.txt"));
 		m.processFile();
 		
-		System.out.println("\n==================== Map ====================\n");
+		System.out.println("\n==================== Map1 ====================\n");
 		System.out.println(m.getMap());
 		
-		Mapper m2 = new Mapper(new File("elephant2.txt"));
+		Mapper m2 = new Mapper(new File("elephant.txt"));
 		m2.processFile();
 		
 		System.out.println("\n==================== Map2 ====================\n");
@@ -21,7 +21,7 @@ public class Application {
 		
 		m.combine();
 		
-		System.out.println("\n==================== Combine ====================\n");
+		System.out.println("\n==================== Combine1 ====================\n");
 		System.out.println(m.getCombined());
 		
 		m2.combine();
@@ -32,9 +32,13 @@ public class Application {
 		Reducer r = new Reducer();
 		r.shuffle(m);
 		r.shuffle(m2);
-		r.sort();
 		
-		System.out.println("\n==================== Sort & Shuffle ====================\n");
+		System.out.println("\n==================== Shuffle ====================\n");
 		System.out.println(r.getShuffled());
+		
+		r.reduce();
+		
+		System.out.println("\n==================== Reduce ====================\n");
+		System.out.println(r.getReduced());
 	}
 }

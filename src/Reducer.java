@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Reducer {
-	ArrayList<KeyValuePair> shuffle;
-	HashMap<String, Integer> reducedList;
+	ArrayList<KeyValuePair> sortShuffle;
+	HashMap<String, Integer> reducedMap;
+	ArrayList<KeyValuePair> reducedSort;
 	
 	public Reducer() {
-		shuffle = new ArrayList<KeyValuePair>();
-		reducedList = new HashMap<String, Integer>();
+		sortShuffle = new ArrayList<KeyValuePair>();
+		reducedMap = new HashMap<String, Integer>();
+		reducedSort = new ArrayList<KeyValuePair>();
 	}
 	
 	public void shuffle(Mapper mapper) {
@@ -18,20 +20,41 @@ public class Reducer {
 			String key = entry.getKey();
 			Integer value = entry.getValue();
 			
-			shuffle.add(new KeyValuePair(key, value));
+			sortShuffle.add(new KeyValuePair(key, value));
 		}
-	}
-	
-	public void sort() {
-		Collections.sort(shuffle, Comparator.comparing(KeyValuePair::getKey));
+		
+		Collections.sort(sortShuffle, Comparator.comparing(KeyValuePair::getKey));
 	}
 	
 	public ArrayList<KeyValuePair> getShuffled() {
-		return shuffle;
+		return sortShuffle;
 	}
 	
 	public void reduce() {
+		for(int i = 0; i < sortShuffle.size(); i++) {
+			String key = sortShuffle.get(i).getKey();
+			Integer value = sortShuffle.get(i).getValue();
+			
+			if(!reducedMap.containsKey(key)) {
+				reducedMap.put(key, value);
+			} else {
+				Integer oldValue = reducedMap.get(key);
+				reducedMap.put(key, oldValue + value);
+			}
+		}
 		
+		for(Map.Entry<String, Integer> entry : reducedMap.entrySet() ) {
+			String key = entry.getKey();
+			Integer value = entry.getValue();
+			
+			reducedSort.add(new KeyValuePair(key, value));
+		}
+		
+		Collections.sort(reducedSort, Comparator.comparing(KeyValuePair::getKey));
+	}
+	
+	public ArrayList<KeyValuePair> getReduced() {
+		return reducedSort;
 	}
 }
 
