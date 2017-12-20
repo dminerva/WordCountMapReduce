@@ -1,1 +1,0 @@
-This is a test. I will test that all punctuation is removed, that includes periods, commas and the like. Testing now.

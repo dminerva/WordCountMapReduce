@@ -1,15 +1,15 @@
 import java.io.File;
-import java.io.IOException;
 
 public class Application {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
+		Mapper m = new Mapper(new File("elephant.txt"));
+		m.processFile();
 		
-		Mapper m = new Mapper(new File("test.txt"));
-		m.readFile();
-		System.out.println(m.toString());
+		System.out.println("========== Map output ==========\n");
+		System.out.println(m.getMap());
+		System.out.println("\n================================");
 		
 		
 	}
-
 }
