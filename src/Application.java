@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.ArrayList;
 
 public class Application {
 
@@ -6,10 +7,12 @@ public class Application {
 		Mapper m = new Mapper(new File("elephant.txt"));
 		m.processFile();
 		
-		System.out.println("========== Map output ==========\n");
+		System.out.println("\n========== Map ==========\n");
 		System.out.println(m.getMap());
-		System.out.println("\n================================");
 		
+		m.combine();
 		
+		System.out.println("\n========== Combine ==========\n");
+		System.out.println(m.getCombined());
 	}
 }

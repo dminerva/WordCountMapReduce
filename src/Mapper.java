@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 public class Mapper {
 	private ArrayList<KeyValuePair> mappedFile;
-	private ArrayList<KeyValuePair> combineList;
+	private ArrayList<KeyValuePair> combinedFile;
 	File fileToRead;
 	private String line;
 	
 	public Mapper(File fileToRead) {
 		mappedFile = new ArrayList<KeyValuePair>();
-		combineList = new ArrayList<KeyValuePair>();
+		combinedFile = new ArrayList<KeyValuePair>();
 		this.fileToRead = fileToRead;
 	}
 	
@@ -50,7 +50,11 @@ public class Mapper {
 		return mappedFile;
 	}
 	
-	public void combine() {
+	public void combine() {		
 		
+	}
+	
+	public ArrayList<KeyValuePair> getCombined() {
+		return combinedFile;
 	}
 }
