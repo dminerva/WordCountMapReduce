@@ -34,13 +34,19 @@ public class Mapper {
 	}
 	
 	public void map(String line) {
-		line = line.replaceAll("," , " ");		
-		line = line.replaceAll("\\'" , " ");
-		line = line.replaceAll("\\." , " ");
-		line = line.replaceAll("\n" , " ");
+		/*line = line.replace("," , " ");	
+		line = line.replace(";" , " ");
+		line = line.replace(":" , " ");
+		line = line.replace("\\'" , " ");
+		line = line.replace("\\." , " ");
+		line = line.replace("\\?" , " ");
+		line = line.replace("\\!" , " ");
+		line = line.replace("\n" , " ");
 		line = line.toLowerCase();
 		
-		String[] words = line.split(" ");
+		String[] words = line.split(" ");*/
+		
+		String[] words = line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
 		
 		for(int i = 0; i < words.length; i++) {
 			mappedFile.add(new KeyValuePair(words[i], 1));

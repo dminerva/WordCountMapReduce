@@ -57,5 +57,3 @@ public class Reducer {
 		return reducedSort;
 	}
 }
-
-
